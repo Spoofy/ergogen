@@ -88,7 +88,7 @@ points:
             r3:
             r2:
             r1:
-              bind: [1,1,0,2]
+              bind: [1,2,0,2]
         index:
           key:
             column_net: P7
@@ -100,6 +100,7 @@ points:
             r3:
             r2:
             r1:
+              bind: [1,2,1,1]
         far:
           key:
             column_net: P6
@@ -120,40 +121,43 @@ points:
         rotate: -15
       rows:
         home:
-          row_net: P18
+          column_net: P16
       columns:
         inner:
           key:
-            column_net: P19
+            row_net: P10
           spread: cx
+          stagger: 0
           rows:
             home:
-              rotate: 0
-              bind: [5,2,2,2]
+              rotate: 90
+              bind: [2,5,2,2]
         middle:
           key:
-            column_net: P20
+            row_net: P9
           spread: cx+1
           rotate: -5
+          stagger: -1
           rows:
             home:
               tags:
                 1u: false
                 15u: true
               rotate: 90
-              bind: [5,9,2,3]
+              bind: [5,9,2,2]
         far:
           key:
-            column_net: P21
+            row_net: P8
           spread: cx+1
           rotate: -5
+          stagger: -1
           rows:
             home:
               tags:
                 1u: false
                 15u: true
               rotate: 90
-              bind: [9,9,1,4]
+              bind: [9,8.9,1,2]
 
 outlines:
   exports:
@@ -162,10 +166,10 @@ outlines:
         side: left
         size: [1cx - 0.5, 1cx - 0.5]
       - type: rectangle
-        size: [31,63.4]
+        size: [31,65.407]
         anchor:
           ref: main_far_r4
-          shift: [2.931,-19.108]
+          shift: [2.288,-21.105]
     cutout:
       - type: outline
         name: raw
@@ -207,7 +211,7 @@ pcbs:
           D: VCC
         anchor:
           ref: main_far_r4
-          shift: [31.9, 1.5]
+          shift: [31.292, 1.5]
           rotate: -90
         params:
           reverse: true
@@ -215,11 +219,32 @@ pcbs:
       rotary:
         type: rotary
         nets:
-          from: P15
+          from: P18
           to: GND
-          A: P16
+          A: P14
           B: GND
-          C: P14
+          C: P15
         anchor:
           ref: main_far_r4
-          shift: [22, -7.5]
+          shift: [21.6, -8]
+      via8:
+        type: via
+        anchor:
+          ref: main_middle_r4
+          shift: [10.442,-9.243]
+        nets:
+          net: P8
+      via9:
+        type: via
+        anchor:
+          ref: main_middle_r4
+          shift: [0, -10.923]
+        nets:
+          net: P9
+      via10:
+        type: via
+        anchor:
+          ref: main_index_r4
+          shift: [0, -10.589]
+        nets:
+          net: P10

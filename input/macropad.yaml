@@ -1,0 +1,185 @@
+points:
+  key:
+    padding: cy
+    bind: 1
+    tags:
+      1u: true
+    footprints:
+      choc_hotswap:
+        type: choc
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+      choc:
+        type: choc
+        anchor:
+          rotate: 180
+        nets:
+          from: =column_net
+          to: GND
+        params:
+          keycaps: true
+          reverse: false
+  zones:
+    box:
+      rows:
+        bottom:
+        middle:
+        top:
+      columns:
+        left:
+          rows:
+            bottom:
+              column_net: P0
+            middle:
+              column_net: P1
+            top:
+              column_net: P3
+        middle:
+          spread: cx
+          rows:
+            bottom:
+              column_net: P4
+            middle:
+              column_net: P5
+            top:
+              column_net: P6
+        right:
+          spread: cx
+          rows:
+            bottom:
+              column_net: P7
+            middle:
+              column_net: P8
+            top:
+              column_net: P9
+    bottomrow:
+      anchor:
+        ref: box_left_bottom
+        shift: [0.5cx,-cy]
+      rows:
+        bottom:
+      columns:
+        zero:
+          rows:
+            bottom:
+              column_net: P10
+              tags:
+                1u: false
+                2u: true
+              bind: [0.5cx + 1,1]
+        del:
+          rows:
+            bottom:
+              column_net: P11
+          spread: 1.5cx
+    toprow:
+      anchor:
+        ref: box_left_top
+        shift: [0,cy]
+      rows:
+        top:
+      columns:
+        c1:
+          rows:
+            top:
+              column_net: P12
+        c2:
+          spread: cx
+          rows:
+            top:
+              column_net: P13
+        c3:
+          spread: cx
+          rows:
+            top:
+              column_net: P14
+              bind: [cx + 0.5,1]
+    rightcol:
+      anchor:
+        ref: bottomrow_del_bottom
+        shift: [1cx - 0.5,9.5]
+      rows:
+        enter:
+          column_net: P15
+          rotate: 90
+          tags:
+            1u: false
+            2u: true
+          padding: 2cy + 2
+          bind: [0.5cx + 1.5,1]
+        plus:
+          column_net: P16
+          rotate: 90
+          tags:
+            1u: false
+            2u: true
+          bind: [0.5cx + 1.5,1]
+      columns:
+        right:
+
+outlines:
+  exports:
+    raw:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cx - 0.5]
+      - type: rectangle
+        size: [1cx+4, 5cy + 2.5]
+        anchor:
+          ref: toprow_c1_top
+          shift: [-0.5cx, 0.5cy + 1.25]
+          rotate: 180
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 0.8
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [1u]
+    keycap_outlines15:
+      - type: keys
+        side: left
+        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [15u]
+    keycap_outlines2:
+      - type: keys
+        side: left
+        size: [2cx - 0.5, 1cy - 0.5]
+        bound: false
+        tags: [2u]
+    preview: [keycap_outlines, keycap_outlines15, keycap_outlines2]
+pcbs:
+  macropad:
+    outlines:
+      board:
+        outline: cutout
+      keycaps:
+        outline: preview
+        layer: Eco1.User
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref: toprow_c1_top
+          shift: [-20, -9.3]
+          rotate: -90
+      rotary:
+        type: rotary
+        anchor:
+          ref: rightcol_right_plus
+          shift: [22, 0]
+        nets:
+          from: P17
+          to: GND
+          A: P18
+          B: GND
+          C: P19

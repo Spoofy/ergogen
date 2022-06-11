@@ -1,0 +1,210 @@
+points:
+  key:
+    padding: cy
+    bind: 1
+    tags:
+      1u: true
+    footprints:
+      choc_hotswap:
+        type: choc
+        nets:
+          from: =row_net
+          to: =column_net
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+      choc:
+        type: choc
+        anchor:
+          rotate: 180
+        nets:
+          from: =row_net
+          to: =column_net
+        params:
+          keycaps: true
+          reverse: true
+      diode:
+        type: diode
+        anchor:
+          rotate: 0
+          shift: [0, -8]
+        nets:
+          from: =column_net
+          to: =row_net
+  
+  zones:
+    main:
+      anchor:
+      rows:
+        r4:
+          row_net: P5
+        r3:
+          row_net: P4
+        r2:
+          row_net: P3
+        r1:
+          row_net: P2
+      columns:
+        pinky:
+          key:
+            column_net: P10
+          rotate: 5
+          rows:
+            r4:
+              bind: [0,3,2,2]
+            r3:
+              bind: [1,1,1,2]
+            r2:
+              bind: [1,1,1,2]
+            r1:
+              bind: [1,5,0,2]
+        ring:
+          key:
+            column_net: P9
+          rotate: -5
+          spread: cx+1
+          stagger: cy-3
+          rows:
+            r4:
+              bind: [0,0,2,2]
+            r3:
+              bind: [0,0,0,3]
+            r2:
+              bind: [0,0,0,4]
+            r1:
+              bind: [1,0,0,2]
+        middle:
+          key:
+            column_net: P8
+          spread: cx
+          stagger: 5
+          rows:
+            r4:
+              bind: [0,2,7,2]
+            r3:
+            r2:
+            r1:
+              bind: [1,1,0,2]
+        index:
+          key:
+            column_net: P7
+          spread: cx
+          stagger: -2
+          rows:
+            r4:
+              bind: [0,0,3,2]
+            r3:
+            r2:
+            r1:
+        far:
+          key:
+            column_net: P6
+          spread: cx
+          stagger: -2
+          rows:
+            r4:
+            r3:
+            r2:
+              bind: [0,2,3,3]
+            r1:
+              bind: [1,2,3,3]
+
+    thumbfan:
+      anchor:
+        ref: main_index_r4
+        shift: [-cx, -cy]
+        rotate: -15
+      rows:
+        home:
+          row_net: P18
+      columns:
+        inner:
+          key:
+            column_net: P19
+          spread: cx
+          rows:
+            home:
+              bind: [5,2,2,2]
+        middle:
+          key:
+            column_net: P20
+          spread: cx+1
+          rotate: -5
+          rows:
+            home:
+              tags:
+                1u: false
+                15u: true
+              rotate: 90
+              bind: [5,9,2,3]
+        far:
+          key:
+            column_net: P21
+          spread: cx+1
+          rotate: -5
+          rows:
+            home:
+              tags:
+                1u: false
+                15u: true
+              rotate: 90
+              bind: [9,9,1,4]
+
+outlines:
+  exports:
+    raw:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cx - 0.5]
+      - type: rectangle
+        size: [31,50]
+        anchor:
+          ref: main_far_r4
+          shift: [2.931,-19.108]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 0.8
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [1u]
+    keycap_outlines15:
+      - type: keys
+        side: left
+        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        bound: false
+        tags: [15u]
+    preview: [keycap_outlines, keycap_outlines15]
+pcbs:
+  5x4:
+    outlines:
+      board:
+        outline: cutout
+      keycaps:
+        outline: preview
+        layer: Eco1.User
+    footprints:
+      promicro:
+        type: promicro_pretty
+        anchor:
+          ref: main_far_r3
+          shift: [22, -5.45]
+          rotate: -90
+      trrs:
+        type: trrs
+        nets:
+          A: GND
+          B: GND
+          C: P0
+          D: VCC
+        anchor:
+          ref: main_far_r4
+          shift: [31.9, -12]
+          rotate: -90
+        params:
+          reverse: true
+          symmetric: true

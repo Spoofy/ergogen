@@ -157,7 +157,7 @@ points:
                 1u: false
                 15u: true
               rotate: 90
-              bind: [9,8.9,1,2]
+              bind: [9,9,1,2]
 
 outlines:
   exports:
@@ -165,11 +165,16 @@ outlines:
       - type: keys
         side: left
         size: [1cx - 0.5, 1cx - 0.5]
-      - type: rectangle
-        size: [31,65.407]
-        anchor:
-          ref: main_far_r4
-          shift: [2.288,-21.105]
+      - type: polygon
+        points: # size: [31,65.407]
+        - ref: thumbfan_far_home
+          shift: [1.5cx-9.25,-(0.5cy+1.25)] # 2.288, -21.105
+        - shift: [66*cos(5pi/36), 66*sin(5pi/36)]
+        #- shift: [70*0.906307, 70*0.422618]
+        - shift: [-30*cos(13pi/36),30*sin(13pi/36)]
+        - ref: main_far_r4
+          shift: [0,-10]
+          
     cutout:
       - type: outline
         name: raw
@@ -183,7 +188,7 @@ outlines:
     keycap_outlines15:
       - type: keys
         side: left
-        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5calc
         bound: false
         tags: [15u]
     preview: [keycap_outlines, keycap_outlines15]
@@ -200,7 +205,7 @@ pcbs:
         type: promicro_pretty
         anchor:
           ref: main_far_r3
-          shift: [21, 8]
+          shift: [21, 8.682]
           rotate: -90
       trrs:
         type: trrs

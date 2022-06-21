@@ -117,7 +117,7 @@ points:
     thumbfan:
       anchor:
         ref: main_index_r4
-        shift: [-0.5cx, -cy]
+        shift: [-cx+5, -cy-1]
         rotate: -15
       rows:
         home:
@@ -131,7 +131,7 @@ points:
           rows:
             home:
               rotate: 90
-              bind: [2,5,2,2]
+              bind: [2,5,2,6]
         middle:
           key:
             row_net: P9
@@ -144,7 +144,7 @@ points:
                 1u: false
                 15u: true
               rotate: 90
-              bind: [5,9,2,2]
+              bind: [5,9,2,6]
         far:
           key:
             row_net: P8
@@ -157,7 +157,7 @@ points:
                 1u: false
                 15u: true
               rotate: 90
-              bind: [9,9.3,1,2]
+              bind: [9,9,1,6]
 
 outlines:
   exports:
@@ -166,12 +166,20 @@ outlines:
         side: left
         size: [1cx - 0.5, 1cx - 0.5]
       - type: rectangle
-        size: [25, 83.5]
+        size: [29.8, 68.7]
         anchor:
           ref: thumbfan_middle_home
           rotate: -70
           shift: [3,0]
-          
+#      - type: polygon
+#        points: # size: [31,65.407]
+#        - ref: thumbfan_far_home
+#          shift: [1.5cx-9.25,-(0.5cy+1.25)] # 2.288, -21.105
+#        - shift: [70*cos(5pi/36), 70*sin(5pi/36)]
+#        #- shift: [70*0.906307, 70*0.422618]
+#        - shift: [-40*cos(13pi/36),40*sin(13pi/36)]
+#        - ref: main_far_r4
+#          shift: [0,-10]
     cutout:
       - type: outline
         name: raw
@@ -202,7 +210,7 @@ pcbs:
         type: promicro_pretty
         anchor:
           ref: main_far_r2
-          shift: [23, 7.475]
+          shift: [22.5, -8.32]
           rotate: -90
       trrs:
         type: trrs
@@ -213,7 +221,7 @@ pcbs:
           D: VCC
         anchor:
           ref: main_far_r3
-          shift: [32.505, 0]
+          shift: [33.32, -16]
           rotate: -90
         params:
           reverse: true
@@ -228,7 +236,16 @@ pcbs:
           C: P15
         anchor:
           ref: main_far_r4
-          shift: [23, 0]
+          shift: [22.5, -7.5]
+#      joystick:
+#        type: joystick
+#        nets:
+#          A: P14
+#          B: P15
+#        anchor:
+#          ref: thumbfan_far_home
+#          shift: [30*cos(5pi/36), 15*sin(5pi/36)]
+#          rotate: 25
       via8:
         type: via
         anchor:

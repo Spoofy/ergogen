@@ -32,8 +32,8 @@ module.exports = {
             (pad B thru_hole circle (at 8.6 0) (size 1.524 1.524) (drill 0.762) (layers *.Cu *.Mask) ${p.net.B.str})
 
             ${'' /* legs */}
-            (pad "" np_thru_hole circle (at -6 -6) (size 0 0) (drill 1.5) (layers *.Cu *.Mask))
-            (pad "" np_thru_hole circle (at 6 6) (size 0 0) (drill 1.5) (layers *.Cu *.Mask))
+            (pad "" np_thru_hole circle (at -6 -6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
+            (pad "" np_thru_hole circle (at 6 6) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
         )
     `
 }
